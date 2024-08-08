@@ -188,7 +188,7 @@ compile(Line, Module, ModuleAsCharlist, Block, Vars, Prune, E) ->
         end,
 
         Binary = elixir_erl:compile(ModuleMap),
-        Autoload = proplists:get_value(autoload, CompileOpts, true),
+        Autoload = proplists:get_value(autoload, CompileOpts, OnLoadAttribute == false),
         spawn_parallel_checker(CheckerInfo, Module, ModuleMap),
         {Binary, PersistedAttributes, Autoload}
       end),
